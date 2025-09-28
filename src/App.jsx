@@ -25,12 +25,12 @@ const App = () => {
 
     // Debounce the search term to prevent asking too many API requests
     // by making the user to stop typing for 500ms
-    // useDebounce(
-    //   () => 
-    //     setDebouncedSearchTerm(searchTerm),
-    //   500,
-    //   [searchTerm]
-    // );
+    useDebounce(
+      () => 
+        setDebouncedSearchTerm(searchTerm),
+      500,
+      [searchTerm]
+    );
 
     const fetchMovies = async (query = '') => {
       setIsLoading(true);
@@ -62,13 +62,9 @@ const App = () => {
       }
     };
 
-    useEffect(() => {
-    fetchMovies(searchTerm);
-  }, [searchTerm]);
-
-  // useEffect(() => {
-  //   fetchMovies(debouncedSearchTerm);
-  // }, [debouncedSearchTerm]);
+  useEffect(() => {
+    fetchMovies(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
 
 
   return (
